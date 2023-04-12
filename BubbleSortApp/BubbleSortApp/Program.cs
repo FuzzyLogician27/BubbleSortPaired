@@ -4,45 +4,73 @@
     {
         static void Main(string[] args)
         {
-            int[] testArr = new int[3] { 3, 2, 1 };
-            BubbleSort(ref testArr);
+            int[] testArr1 = new int[3] { 1, 2, 5 };
+            //BubbleSort(ref testArr);
 
             //NICECCCCCECECEC 
 
-            foreach(int n in testArr)
+            
+
+            int[] testArr2 = new int[3] { 2, 4, 6 };
+
+            int[] outputArr = new int[6];
+            outputArr = PreludeMergeSort(testArr1, testArr2);
+            foreach (int n in outputArr)
             {
                 Console.WriteLine(n);
             }
-            
+
         }
 
         public static void BubbleSort(ref int[] arr)
         {
             int temp = 0;
-            bool clean = false;
-
-            while (clean == false)
+            bool clean = true;
+            do
             {
-
-                //Lowest to highest BUBBLING
                 clean = true;
+                //Lowest to highest BUBBLING
                 for (int i = 0; i < arr.Length - 1; i++)
                 {
                     temp = arr[i];
                     if (arr[i] > arr[i + 1])
                     {
                         arr[i] = arr[i + 1];
-                        arr[i+1] = temp;
+                        arr[i + 1] = temp;
                         clean = false;
                     }
-                        
-                        
                 }
 
+            } while (clean == false);
+        }
+
+
+        public static int[] PreludeMergeSort(int[] arr1, int[] arr2)
+        {
+            int[] mergedArray = new int[(arr1.Length + arr2.Length)];
+
+            int index1 = 0;
+            int index2 = 0;
+
+            for (int i = 0; i < mergedArray.Length; i++)
+            {
+                if (index1 <= arr1.Length - 1 && arr1[index1] <= arr2[index2])
+                {
+                    mergedArray[i] = arr1[index1];
+                    index1++;
+
+                }
+                else if (index2 <= arr2.Length - 1)
+                {
+                    mergedArray[i] = arr2[index2];
+                    index2++;
+                }
             }
 
-            
 
+            return mergedArray;
         }
+
+
     }
 }
