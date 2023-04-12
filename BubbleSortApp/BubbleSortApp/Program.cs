@@ -1,6 +1,6 @@
 ﻿namespace BubbleSortApp
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -47,6 +47,15 @@
 
         public static int[] PreludeMergeSort(int[] arr1, int[] arr2)
         {
+            if(arr1 == null || arr2 == null)
+            {
+                throw new ArgumentException("This method needs two arrays");
+            }
+            if((arr1.Length + arr2.Length) == 0)
+            {
+                return new int[] { };
+            }
+
             int[] mergedArray = new int[(arr1.Length + arr2.Length)];
 
             int index1 = 0;
